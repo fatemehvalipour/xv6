@@ -88,6 +88,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
+  p->priority = 3; // default priority
 
   release(&ptable.lock);
 
@@ -336,6 +337,20 @@ scheduler(void)
       if(p->state != RUNNABLE)
         continue;
 
+      struct proc* maxPriorityProc = p;
+      for (struct proc* subProc = ptable.proc; subProc < &ptable.proc[NPROC]; subProc++)
+      {
+        if (subProc->state != RUNNABLE)
+        {
+          continue;
+        }
+        if (subProc->priority < p->priority)
+        {
+          maxPriorityProc = subProc;
+        }
+      }
+      p = maxPriorityProc;
+      
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
