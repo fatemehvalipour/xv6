@@ -1,0 +1,10 @@
+#include "types.h"
+#include "stat.h"
+#include "user.h"
+
+int main()
+{
+    fork();
+    printf(2, "This is proccess %d and the parent id is %d\n", getpid(), getparentid());
+    exit();
+}
