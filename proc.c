@@ -567,7 +567,7 @@ int * getChildren(int pid){
   }
 
   release(&ptable.lock);
-  return child;
+  return &child;
 }
 
 int
