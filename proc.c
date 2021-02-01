@@ -579,3 +579,10 @@ setpriority(int value)
   myproc()->priority = value;
   return myproc()->priority; 
 }
+
+int
+changepolicy(int value)
+{
+  policy = value;
+  return policy;
+}

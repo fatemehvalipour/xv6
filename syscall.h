@@ -23,3 +23,4 @@
 #define SYS_getparentid 22
 #define SYS_getChildren 23
 #define SYS_setpriority 24
+#define SYS_changepolicy 25

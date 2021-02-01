@@ -120,3 +120,15 @@ sys_setpriority(void)
   
   return setpriority(value);
 }
+
+int
+sys_changepolicy(void)
+{
+  int value;
+  if (argint(0, &value) < 0)
+  {
+    return -1;
+  }
+  
+  return changepolicy(value);
+}
