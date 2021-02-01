@@ -95,3 +95,11 @@ sys_getparentid(void)
 {
   return getparentid();
 }
+
+int *
+sys_getChildren(void)
+{
+  int pid;
+  argptr(0, (void*) &pid, sizeof(pid));
+  return getChildren(pid);
+}
