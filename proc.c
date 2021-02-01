@@ -570,3 +570,9 @@ int * getChildren(int pid){
   return child;
 }
 
+int
+setpriority(int value)
+{
+  myproc()->priority = value;
+  return myproc()->priority; 
+}

@@ -103,3 +103,20 @@ sys_getChildren(void)
   argptr(0, (void*) &pid, sizeof(pid));
   return getChildren(pid);
 }
+
+int
+sys_setpriority(void)
+{
+  int value;
+  if (argint(0, &value) < 0)
+  {
+    return -1;
+  }
+  
+  if (value < 1 || value > 6)
+  {
+    value = 5;
+  }
+  
+  return setpriority(value);
+}
