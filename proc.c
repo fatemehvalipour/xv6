@@ -337,19 +337,22 @@ scheduler(void)
       if(p->state != RUNNABLE)
         continue;
 
-      struct proc* maxPriorityProc = p;
-      for (struct proc* subProc = ptable.proc; subProc < &ptable.proc[NPROC]; subProc++)
+      if (policy == 2)
       {
-        if (subProc->state != RUNNABLE)
+        struct proc* maxPriorityProc = p;
+        for (struct proc* subProc = ptable.proc; subProc < &ptable.proc[NPROC]; subProc++)
         {
-          continue;
+          if (subProc->state != RUNNABLE)
+          {
+            continue;
+          }
+          if (subProc->priority < p->priority)
+          {
+            maxPriorityProc = subProc;
+          }
         }
-        if (subProc->priority < p->priority)
-        {
-          maxPriorityProc = subProc;
-        }
+        p = maxPriorityProc;
       }
-      p = maxPriorityProc;
       
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
