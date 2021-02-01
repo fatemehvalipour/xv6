@@ -1,19 +1,21 @@
 #include "types.h"
 #include "stat.h"
 #include "user.h"
+#include "param.h"
+#include "defs.h"
 
 int main()
 {
     fork();
     wait();
-    printf(2, "PID: %d, parentID: %d, children: \n", getpid(), getparentid());
+    printf(2, "PID: %d, parentID: %d, children: ", getpid(), getparentid());
     int *arr = getChildren(getparentid());
-    for(int i = 0 ; i < 64; i++){
-        // if(arr[i] == 1){
-        //     printf(1, "%d   ", i);
-        // }
-        
-        printf(2, "*(arr + %d) : %d\n", i, *(arr + i));
+    for(int i = 0 ; i < NPROC; i++){
+        if (*(arr + i) != 0)
+        {
+            printf(1, "%d/", *(arr + i));
+        }
     }
+    printf(0, "\n");
     exit();
 }
