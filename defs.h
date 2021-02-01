@@ -121,7 +121,7 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 int             getparentid(void);
-int  *          getChildren(2int);
+int  *          getChildren(int);
 int             setpriority(int);
 int             policy; // for choosing which policy should taken for scheduler
 int             changepolicy(int);
