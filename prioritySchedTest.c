@@ -57,4 +57,5 @@ int main()
             childFunction(i);
         }
     }
+    exit();
 }
