@@ -12,7 +12,7 @@ int main()
     for(int i = 0 ; i < NPROC; i++){
         if ((arr + i) != 0)
         {
-            printf(1, "%d/", (arr + i));
+            printf(1, "%d/", *(arr + i));
         }
     }
     printf(0, "\n");
