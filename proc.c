@@ -572,18 +572,21 @@ int getparentid()
 
 int * getChildren(int pid){
 
-  static int child[64];
+  int child[64];
   for(int i = 0 ; i < 64 ; i++){
     child[i] = 0;
   }
+
   acquire(&ptable.lock);
+  int count = 0;
   for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->parent->pid == pid){
-      child[p->pid] = 1;
+      child[count] = p->pid;
+      count++;
     }
   }
-
   release(&ptable.lock);
+
   return child;
 }
 
