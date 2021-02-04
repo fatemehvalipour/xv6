@@ -25,3 +25,8 @@
 #define SYS_setpriority 24
 #define SYS_changepolicy 25
 #define SYS_getSystemCallCount 26
+#define SYS_getCreationTime 27
+#define SYS_getTerminationTime 28
+#define SYS_getRunningTime 29
+#define SYS_getReadyTime 30
+#define SYS_getSleepingTime 31

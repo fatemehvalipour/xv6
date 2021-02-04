@@ -89,7 +89,14 @@ found:
   p->state = EMBRYO;
   p->pid = nextpid++;
   p->priority = 3; // default priority
-  for (int i = 0 ; i < 30 ; i++){
+  p->creationTime = ticks;
+  p->terminationTime = 0;
+  p->runningTime = 0;
+  p->readyTime = 0;
+  p->sleepingTime = 0;
+
+
+  for (int i = 0 ; i < 40 ; i++){ // set count of systemCalls to zero
     p->num_of_systemCall[i] = 0;
   }
   release(&ptable.lock);
@@ -266,6 +273,7 @@ exit(void)
 
   // Jump into the scheduler, never to return.
   curproc->state = ZOMBIE;
+  p->terminationTime = ticks;
   sched();
   panic("zombie exit");
 }
@@ -591,6 +599,22 @@ changepolicy(int value)
 {
   policy = value;
   return policy;
+}
+
+void
+setTime(void)
+{
+  acquire(&ptable.lock);
+  for (struct proc *p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+  {
+    if (p->state == RUNNABLE)
+      p->readyTime++;
+    else if (p->state == RUNNING)
+      p->runningTime++;
+    else if (p->state == SLEEPING)
+      p->sleepingTime++;
+  }
+  release(&ptable.lock);
 }
 
 

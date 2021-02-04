@@ -126,7 +126,12 @@ int             setpriority(int);
 int             policy; // for choosing which policy should taken for scheduler
 int             changepolicy(int);
 int             getSystemCallCount(int);
-
+int             getCreationTime(void);
+int             getTerminationTime(void);
+int             getRunningTime(void);
+int             getReadyTime(void);
+int             getSleepingTime(void);
+void            setTime(void);
 // swtch.S
 void            swtch(struct context**, struct context*);
 

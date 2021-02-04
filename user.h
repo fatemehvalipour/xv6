@@ -28,6 +28,11 @@ int * getChildren(int);
 int setpriority(int);
 int changepolicy(int);
 int getSystemCallCount(int);
+int getCreationTime(void);
+int getTerminationTime(void);
+int getRunningTime(void);
+int getReadyTime(void);
+int getSleepingTime(void);
 
 // ulib.c
 int stat(const char*, struct stat*);

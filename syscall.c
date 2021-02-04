@@ -108,6 +108,11 @@ extern int sys_getChildren(void);
 extern int sys_setpriority(void);
 extern int sys_changepolicy(void);
 extern int sys_getSystemCallCount(void);
+extern int sys_getCreationTime(void);
+extern int sys_getTerminationTime(void);
+extern int sys_getRunningTime(void);
+extern int sys_getReadyTime(void);
+extern int sys_getSleepingTime(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -136,6 +141,11 @@ static int (*syscalls[])(void) = {
 [SYS_setpriority] sys_setpriority,
 [SYS_changepolicy] sys_changepolicy,
 [SYS_getSystemCallCount] sys_getSystemCallCount,
+[SYS_getCreationTime] sys_getCreationTime,
+[SYS_getTerminationTime] sys_getTerminationTime,
+[SYS_getRunningTime] sys_getRunningTime,
+[SYS_getReadyTime] sys_getReadyTime,
+[SYS_getSleepingTime] sys_getSleepingTime,
 };
 
 void

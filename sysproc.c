@@ -143,3 +143,33 @@ sys_getSystemCallCount(void)
   return myproc()->num_of_systemCall[systemCallID];
 
 }
+
+int
+sys_getCreationTime(void)
+{
+  return myproc()->creationTime;
+}
+
+int
+sys_getTerminationTime(void)
+{
+  return myproc()->terminationTime;
+}
+
+int
+sys_getRunningTime(void)
+{
+  return myproc()->runningTime;
+}
+
+int
+sys_getReadyTime(void)
+{
+  return myproc()->readyTime;
+}
+
+int
+sys_getSleepingTime(void)
+{
+  return myproc()->sleepingTime;
+}

@@ -49,7 +49,7 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
-  int num_of_systemCall[30];
+  int num_of_systemCall[40];
   int priority;                // process priority for scheduling
   int creationTime;            // time that process created
   int terminationTime;         // time that process terminated
