@@ -568,7 +568,7 @@ int getparentid()
 
 int * getChildren(int pid){
 
-  int child[64];
+  static int child[64];
   for(int i = 0 ; i < 64 ; i++){
     child[i] = 0;
   }

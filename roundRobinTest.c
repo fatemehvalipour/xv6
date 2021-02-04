@@ -25,8 +25,11 @@ int main()
     changepolicy(1);
     for (int i = 0; i < 10; i++)
     {
-        if (fork() == 0)
+        int testFork = fork();
+        wait();
+        if (testFork == 0)
         {
+            wait();
             childFunction();
         }
     }
