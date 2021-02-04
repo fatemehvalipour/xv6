@@ -352,7 +352,7 @@ scheduler(void)
         struct proc* maxPriorityProc = p;
         for (struct proc* subProc = ptable.proc; subProc < &ptable.proc[NPROC]; subProc++)
         {
-          if (subProc->state != RUNNABLE && subProc->state != RUNNING)
+          if (subProc->state != RUNNABLE)
           {
             continue;
           }
@@ -360,10 +360,6 @@ scheduler(void)
           {
             maxPriorityProc = subProc;
           }
-        }
-        if (maxPriorityProc->state == RUNNING)
-        {
-          break;
         }
         p = maxPriorityProc;
       }
