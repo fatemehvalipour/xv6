@@ -132,3 +132,14 @@ sys_changepolicy(void)
   
   return changepolicy(value);
 }
+
+int
+sys_getSystemCallCount(void)
+{
+  int systemCallID;
+  if(argint(0, &systemCallID) < 0){
+    return -1;
+  }
+  return myproc()->num_of_systemCall[systemCallID];
+
+}

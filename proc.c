@@ -89,7 +89,9 @@ found:
   p->state = EMBRYO;
   p->pid = nextpid++;
   p->priority = 3; // default priority
-
+  for (int i = 0 ; i < 30 ; i++){
+    p->num_of_systemCall[i] = 0;
+  }
   release(&ptable.lock);
 
   // Allocate kernel stack.
@@ -590,3 +592,5 @@ changepolicy(int value)
   policy = value;
   return policy;
 }
+
+

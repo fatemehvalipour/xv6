@@ -107,6 +107,7 @@ extern int sys_getparentid(void);
 extern int sys_getChildren(void);
 extern int sys_setpriority(void);
 extern int sys_changepolicy(void);
+extern int sys_getSystemCallCount(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -134,6 +135,7 @@ static int (*syscalls[])(void) = {
 [SYS_getChildren] sys_getChildren,
 [SYS_setpriority] sys_setpriority,
 [SYS_changepolicy] sys_changepolicy,
+[SYS_getSystemCallCount] sys_getSystemCallCount,
 };
 
 void
@@ -150,4 +152,5 @@ syscall(void)
             curproc->pid, curproc->name, num);
     curproc->tf->eax = -1;
   }
+  myproc()->num_of_systemCall[num]++;
 }

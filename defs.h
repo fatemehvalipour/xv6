@@ -125,6 +125,7 @@ int  *          getChildren(int);
 int             setpriority(int);
 int             policy; // for choosing which policy should taken for scheduler
 int             changepolicy(int);
+int             getSystemCallCount(int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);
