@@ -5,16 +5,16 @@
 
 int main()
 {
-    fork();
     wait();
-    printf(2, "PID: %d, parentID: %d, children: ", getpid(), getparentid());
-    int *arr = getChildren(getparentid());
-    for(int i = 0 ; i < NPROC; i++){
-        if (*(arr + i) != 0)
+    for(int i = 0; i < 20; i++)
+    {
+        if(fork() == 0)
         {
-            printf(1, "%d/", *(arr + i));
+            exit();
         }
     }
-    printf(0, "\n");
+    wait();
+    printf(2, "PID: %d, parentID: %d, children: ", getpid(), getparentid());
+    getChildren(getpid());
     exit();
 }
