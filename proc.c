@@ -607,4 +607,36 @@ setTime(void)
   release(&ptable.lock);
 }
 
+int
+getAvgWT(void)
+{
+  int sum = 0;
+  int count = 0;
+  for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+  int wt = 0;
+    if(p->parent->pid == myproc()->pid){
+      wt = p->terminationTime - p->creationTime - p->runningTime;
+      sum += wt;
+    }
+  }
+
+  return sum/count;
+}
+
+int
+getAvgTT(void)
+{
+  int sum = 0;
+  int count = 0;
+  for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    int tt = 0;
+    if(p->parent->pid == myproc()->pid){
+      tt = p->terminationTime - p->creationTime;
+      sum += tt;
+      count++;
+    }
+  }
+
+  return sum / count;
+}
 

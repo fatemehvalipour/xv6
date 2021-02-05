@@ -30,3 +30,5 @@
 #define SYS_getRunningTime 29
 #define SYS_getReadyTime 30
 #define SYS_getSleepingTime 31
+#define SYS_getAvgWaitingTime 32
+#define SYS_getAvgTurnaroundTime 33

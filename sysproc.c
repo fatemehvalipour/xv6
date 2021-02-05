@@ -173,3 +173,15 @@ sys_getSleepingTime(void)
 {
   return myproc()->sleepingTime;
 }
+
+int
+sys_getAvgWaitingTime(void)
+{
+  return getAvgWT();
+}
+
+int
+sys_getAvgTurnaroundTime(void)
+{
+  return getAvgTT();
+}

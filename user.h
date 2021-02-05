@@ -33,6 +33,8 @@ int getTerminationTime(void);
 int getRunningTime(void);
 int getReadyTime(void);
 int getSleepingTime(void);
+int getAvgTurnaroundTime(void);
+int getAvgWaitingTime(void);
 
 // ulib.c
 int stat(const char*, struct stat*);
