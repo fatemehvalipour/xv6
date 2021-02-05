@@ -3,20 +3,12 @@
 #include "user.h"
 #include "param.h"
 
-void printState(int childNumber, int index)
-{
-    printf(2, "/%d/ : /%d/\n", childNumber, index);
-}
-
 void childFunction(int childNumber)
 {
     for (int j = 0; j < 250; j++)
     {
-        printState(childNumber, j);
+        printf(1, "%d\n", childNumber);
     }
-    int burstTime = getRunningTime();
-    int waitingTime = getReadyTime() + getSleepingTime();
-    printf(4, "<%d> CBT : /%d/, WaitingTime : /%d/, TurnAroundTime : /%d/\n", getpid(), burstTime, waitingTime, burstTime + waitingTime);
     exit();
 }
 
@@ -57,5 +49,7 @@ int main()
             childFunction(i);
         }
     }
+    sleep(2500);
+    printf(2, "average waiting time : %d, average turn around time : %d\n", getAvgWaitingTime(), getAvgTurnaroundTime());
     exit();
 }

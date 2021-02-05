@@ -177,11 +177,11 @@ sys_getSleepingTime(void)
 int
 sys_getAvgWaitingTime(void)
 {
-  return getAvgWT();
+  return getAvgWaitingTime();
 }
 
 int
 sys_getAvgTurnaroundTime(void)
 {
-  return getAvgTT();
+  return getAvgTurnaroundTime();
 }

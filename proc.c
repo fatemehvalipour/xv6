@@ -608,35 +608,36 @@ setTime(void)
 }
 
 int
-getAvgWT(void)
+getAvgWaitingTime(void)
 {
   int sum = 0;
   int count = 0;
   for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-  int wt = 0;
+    int wt = 0;
     if(p->parent->pid == myproc()->pid){
-      wt = p->terminationTime - p->creationTime - p->runningTime;
+      wt = p->readyTime + p->sleepingTime;
+      cprintf("<%d> Waiting Time : %d\n", p->pid, wt);
       sum += wt;
+      count++;
     }
   }
-
-  return sum/count;
+  return (int)(sum / count);
 }
 
 int
-getAvgTT(void)
+getAvgTurnaroundTime(void)
 {
   int sum = 0;
   int count = 0;
   for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     int tt = 0;
     if(p->parent->pid == myproc()->pid){
-      tt = p->terminationTime - p->creationTime;
+      tt = p->runningTime + p->sleepingTime + p->readyTime;
+      cprintf("<%d> CBT : %d, Turnaround Time : %d\n", p->pid, p->runningTime, tt);
       sum += tt;
       count++;
     }
   }
-
-  return sum / count;
+  return (int)(sum / count);
 }
 
