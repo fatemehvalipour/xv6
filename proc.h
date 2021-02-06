@@ -56,6 +56,7 @@ struct proc {
   int runningTime;             // amount of time that process is in running mode
   int readyTime;               // amount of time that process was in ready queue
   int sleepingTime;            // amount of time that process was in sleep
+  int group;                   // group ID for multi layered queued
 };
 
 // Process memory is laid out contiguously, low addresses first:
