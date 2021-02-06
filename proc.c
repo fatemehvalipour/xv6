@@ -362,6 +362,38 @@ scheduler(void)
           }
         }
         p = maxPriorityProc;
+
+      } else if(policy == 3 && p->group == 2){
+
+        struct proc* maxPriorityProc = p;
+        for (struct proc* subProc = ptable.proc; subProc < &ptable.proc[NPROC]; subProc++)
+        {
+          if (subProc->state != RUNNABLE || subProc->group != 2)
+          {
+            continue;
+          }
+          if (subProc->priority < p->priority )
+          {
+            maxPriorityProc = subProc;
+          }
+        }
+        p = maxPriorityProc;
+
+      } else if(policy == 3 && p->group == 3){
+
+        struct proc* maxPriorityProc = p;
+        for (struct proc* subProc = ptable.proc; subProc < &ptable.proc[NPROC]; subProc++)
+        {
+          if (subProc->state != RUNNABLE || subProc->group != 3)
+          {
+            continue;
+          }
+          if (subProc->priority > p->priority )
+          {
+            maxPriorityProc = subProc;
+          }
+        }
+        p = maxPriorityProc;
       }
       
       // Switch to chosen process.  It is the process's job
