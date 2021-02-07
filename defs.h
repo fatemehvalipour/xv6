@@ -134,6 +134,7 @@ int             getSleepingTime(void);
 void            setTime(void);
 int             getAvgWaitingTime(void);
 int             getAvgTurnaroundTime(void);
+int             setGroup(int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

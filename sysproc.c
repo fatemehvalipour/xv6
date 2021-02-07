@@ -185,3 +185,17 @@ sys_getAvgTurnaroundTime(void)
 {
   return getAvgTurnaroundTime();
 }
+
+int
+sys_setGroup(void){
+  int GID;
+  if (argint(0, &GID) <= 0)
+  {
+    return -1;
+  }
+  if (GID > 4)
+  {
+    return -1;
+  }
+  return setGroup(GID);
+}

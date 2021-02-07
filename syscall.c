@@ -115,6 +115,7 @@ extern int sys_getReadyTime(void);
 extern int sys_getSleepingTime(void);
 extern int sys_getAvgTurnaroundTime(void);
 extern int sys_getAvgWaitingTime(void);
+extern int sys_setGroup(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -150,6 +151,7 @@ static int (*syscalls[])(void) = {
 [SYS_getSleepingTime] sys_getSleepingTime,
 [SYS_getAvgWaitingTime] sys_getAvgWaitingTime,
 [SYS_getAvgTurnaroundTime] sys_getAvgTurnaroundTime,
+[SYS_setGroup] sys_setGroup,
 };
 
 void

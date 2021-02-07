@@ -32,3 +32,4 @@
 #define SYS_getSleepingTime 31
 #define SYS_getAvgWaitingTime 32
 #define SYS_getAvgTurnaroundTime 33
+#define SYS_setGroup 34

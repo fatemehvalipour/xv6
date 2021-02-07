@@ -35,6 +35,7 @@ int getReadyTime(void);
 int getSleepingTime(void);
 int getAvgTurnaroundTime(void);
 int getAvgWaitingTime(void);
+int setGroup(int);
 
 // ulib.c
 int stat(const char*, struct stat*);

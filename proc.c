@@ -94,6 +94,7 @@ found:
   p->runningTime = 0;
   p->readyTime = 0;
   p->sleepingTime = 0;
+  p->group = 1;
 
 
   for (int i = 0 ; i < 40 ; i++){ // set count of systemCalls to zero
@@ -671,5 +672,13 @@ getAvgTurnaroundTime(void)
     }
   }
   return (int)(sum / count);
+}
+
+int
+setGroup(int groupID)
+{
+  myproc()->group = groupID;
+  //sort
+  return groupID;
 }
 
