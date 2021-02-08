@@ -189,7 +189,7 @@ sys_getAvgTurnaroundTime(void)
 int
 sys_setGroup(void){
   int GID;
-  if (argint(0, &GID) <= 0)
+  if (argint(0, &GID) < 0)
   {
     return -1;
   }

@@ -6,7 +6,7 @@
 int main()
 {
     wait();
-    for(int i = 0; i < 20; i++)
+    for(int i = 0; i < 15; i++)
     {
         if(fork() == 0)
         {

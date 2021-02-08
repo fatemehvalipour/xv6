@@ -649,9 +649,42 @@ getAvgWaitingTime(void)
     int wt = 0;
     if(p->parent->pid == myproc()->pid){
       wt = p->readyTime + p->sleepingTime;
-      cprintf("<%d> Waiting Time : %d\n", p->pid, wt);
       sum += wt;
       count++;
+    }
+  }
+  if(policy == 2)
+  {
+    int priorityCount[6] = {0, 0, 0, 0, 0, 0};
+    int waitingTime[6] = {0, 0, 0, 0, 0, 0};
+    int turnaroundTime[6] = {0, 0, 0, 0, 0, 0};
+    for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+      if(p->parent->pid == myproc()->pid){
+        waitingTime[p->priority - 1] += p->readyTime + p->sleepingTime;
+        turnaroundTime[p->priority - 1] += p->readyTime + p->sleepingTime + p->runningTime;
+        priorityCount[p->priority - 1]++;
+      }
+    }
+    for(int i = 0; i < 6; i++)
+    {
+      cprintf("Priority<%d>-- Average WaitingTime : %d, Average turnaroundTime : %d\n", (i+1), (int)(waitingTime[i]/priorityCount[i]), (int)(turnaroundTime[i]/priorityCount[i]));
+    }
+  }
+  else if(policy == 3)
+  {
+    int groupCount[4] = {0, 0, 0, 0};
+    int waitingTime[4] = {0, 0, 0, 0};
+    int turnaroundTime[4] = {0, 0, 0, 0};
+    for(struct proc* p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+      if(p->parent->pid == myproc()->pid){
+        waitingTime[p->group - 1] += p->readyTime + p->sleepingTime;
+        turnaroundTime[p->group - 1] += p->readyTime + p->sleepingTime + p->runningTime;
+        groupCount[p->group - 1]++;
+      }
+    }
+    for(int i = 0; i < 4; i++)
+    {
+      cprintf("Group<%d>-- Average WaitingTime : %d, Average turnaroundTime : %d\n", (i+1), (int)(waitingTime[i]/groupCount[i]), (int)(turnaroundTime[i]/groupCount[i]));
     }
   }
   return (int)(sum / count);
@@ -666,7 +699,7 @@ getAvgTurnaroundTime(void)
     int tt = 0;
     if(p->parent->pid == myproc()->pid){
       tt = p->runningTime + p->sleepingTime + p->readyTime;
-      cprintf("<%d> CBT : %d, Turnaround Time : %d\n", p->pid, p->runningTime, tt);
+      cprintf("<%d> CBT : %d, Turnaround Time : %d, WaitingTime : %d\n", p->pid, p->runningTime, p->runningTime + p->sleepingTime + p->readyTime, p->readyTime + p->sleepingTime);
       sum += tt;
       count++;
     }
